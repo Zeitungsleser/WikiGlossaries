@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slang damals und heute</title>
+    </head>
+    <body>
+        <h1 id="word">uwu</h1>
+        <h3 id="definition">A twinky girl</h3>
+        <script>
+            (async function (){
+                const response = await fetch("slang.json")
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const glossary = await response.json();
+                const word = document.getElementById("word");
+                const definition = document.getElementById("definition");
+                console.log(glossary);
+                words = Object.keys(glossary);
+                size = words.length;
+                function replaceWord(){
+                    sel_word = words[Math.floor(Math.random() * size)];
+                    sel_def = glossary[sel_word];
+                    word.innerText = sel_word;
+                    definition.innerText = sel_def;
+                    setTimeout(replaceWord, 10 * 1000);
+                }
+                replaceWord();
+                document.body.addEventListener('click', replaceWord, false);
+            })();
+        </script>
+    </body>
+</html>

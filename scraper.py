@@ -10,10 +10,22 @@ with open("alt.html") as f:
             speaker.extract()
     glossary = {}
     for dl in soup.find_all('dl'):
-        word = ""
-        definition = ""
+        word = None
+        definition = None
         for child in dl.children:
             if child.name == "dt":
-                glossary[word]                
-    #with open("alt.json", 'w') as g:
-    #    json.dump(glossary,g,indent=4)
+                if word:
+                    glossary[word] = definition
+                definition = None
+                word = child.get_text()
+            elif child.name == "dd":
+                if child.get_text().startswith("Main article:"):
+                    pass
+                elif definition:
+                    definition = definition + "\n" + child.get_text()
+                else:
+                    definition = child.get_text()  
+        if word:
+            glossary[word] = definition              
+    with open("alt.json", 'w') as g:
+        json.dump(glossary,g,indent=4)
