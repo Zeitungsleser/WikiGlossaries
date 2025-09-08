@@ -4,7 +4,7 @@
         <title>Slang damals und heute</title>
     </head>
     <body>
-        <h1 id="word">uwu</h1>
+        <h1 id="word" style="font-family: 'Linux Libertine';">uwu</h1>
         <h3 id="definition">A twinky girl</h3>
         <script>
             (async function (){
@@ -19,12 +19,20 @@
                 console.log(glossary);
                 words = Object.keys(glossary);
                 size = words.length;
+                var timeoutID;
                 function replaceWord(){
+                    if(timeoutID){
+                        clearTimeout(timeoutID);
+                    }
                     sel_word = words[Math.floor(Math.random() * size)];
                     sel_def = glossary[sel_word];
                     word.innerText = sel_word;
                     definition.innerText = sel_def;
-                    setTimeout(replaceWord, 10 * 1000);
+                    var timeoutTime = 10 * 1000;
+                    if(sel_def.length > 300){
+                        timeoutTime = 20 * 1000;
+                    }
+                    timeoutID = setTimeout(replaceWord, timeoutTime);
                 }
                 replaceWord();
                 document.body.addEventListener('click', replaceWord, false);
