@@ -2,52 +2,47 @@
 <html>
     <head>
         <title>Slang damals und heute</title>
-        <script type="application/json" id="slang" src="slang.json">
-        </script>
+        <link href="https://fonts.cdnfonts.com/css/linux-libertine-o" rel="stylesheet">
         <style>
-            * {
-                box-sizing: border-box
+            body{
+                height: 100%;
+                background-color: #404040;
             }
-            body {
-                margin: 0;
-                min-height: 100svh;
-                display: grid;
-                place-items: center;
-                padding: 6vmin;
-                background: linear-gradient(#fafafa, #eef2f7);
-                font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-                color: #0f172a;
+            h1{
+                font-family: 'Linux Libertine O';
+                font-size: 4em;
                 text-align: center;
+                background-color: whitesmoke;
+                color: #404040;
+                padding: 0.5em;
             }
-            #word {
-                font-family: "Linux Libertine", serif;
-                font-size: clamp(48px, 12vw, 120px);
-                line-height: 1.05;
-                margin: 0 0 .2em;
-                text-wrap: balance;
-                text-shadow: 0 1px 0 rgba(0, 0, 0, .04);
+            #word{
+                font-family: 'Linux Libertine O'; 
+                font-size: 5em; 
+                margin-left: 2.5em;
+                margin-top: 3em;
+                color: whitesmoke;
             }
-            #definition {
-                font-size: clamp(18px, 2.6vw, 28px);
-                margin: 0;
-                max-width: 55ch;
-                opacity: .9;
+            #definition{
+                font-family: sans-serif; 
+                font-size: 2em; 
+                margin-left: 5em; 
+                margin-right: 400px;
+                color: whitesmoke;
             }
-            @media (prefers-color-scheme:dark) {
-                body {
-                    background: linear-gradient(#0b1220, #0f172a);
-                    color: #e5e7eb
-                }
-        
-                #definition {
-                    opacity: .95
-                }
+            #logo{
+                position: fixed;
+                bottom: 100px;
+                right: 100px;
+                width: 250px;
             }
         </style>
     </head>
     <body>
-        <h1 id="word" style="font-family: 'Linux Libertine';">uwu</h1>
-        <h3 id="definition">A twinky girl</h3>
+        <!--<h1>Slang der 2020er</h1>-->
+        <h2 id="word">uwu</h2>
+        <p id="definition">A twinky girl</p>
+        <img id="logo" src="wiki_logo.png">
         <script>
             (async function (){
                 const response = await fetch("slang.json")
@@ -72,7 +67,7 @@
                     definition.innerText = sel_def;
                     var timeoutTime = 10 * 1000;
                     if(sel_def.length > 300){
-                        timeoutTime = 20 * 1000;
+                        timeoutTime = 25 * 1000;
                     }
                     timeoutID = setTimeout(replaceWord, timeoutTime);
                 }
