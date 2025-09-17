@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slang damals und heute</title>
+        <link href="https://fonts.cdnfonts.com/css/linux-libertine-o" rel="stylesheet">
+        <style>
+            body{
+                height: 100%;
+                background-color: #52884b;
+                cursor: none;
+            }
+            h1{
+                font-family: 'Linux Libertine O';
+                font-size: 4em;
+                text-align: center;
+                background-color: whitesmoke;
+                color: #404040;
+                padding: 0.5em;
+            }
+            #word{
+                font-family: 'Linux Libertine O'; 
+                font-size: 5em; 
+                margin-left: 2.5em;
+                margin-top: 3em;
+                color: whitesmoke;
+            }
+            #definition{
+                font-family: sans-serif; 
+                font-size: 2em; 
+                margin-left: 5em; 
+                margin-right: 400px;
+                color: whitesmoke;
+            }
+            #logo{
+                position: fixed;
+                bottom: 100px;
+                right: 100px;
+                width: 250px;
+            }
+            #symbol{
+                position: fixed;
+                bottom: 100px;
+                left: 100px;
+                height: 250px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<h1>Slang der 2020er</h1>-->
+        <h2 id="word">uwu</h2>
+        <p id="definition">A twinky girl</p>
+        <img id="logo" src="wiki_logo.png">
+        <script>
+            (async function (){
+                const response = await fetch("green.json")
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const glossary = await response.json();
+                const word = document.getElementById("word");
+                const definition = document.getElementById("definition");
+                console.log(glossary);
+                words = Object.keys(glossary);
+                size = words.length;
+                var timeoutID;
+                function replaceWord(){
+                    if(timeoutID){
+                        clearTimeout(timeoutID);
+                    }
+                    sel_word = words[Math.floor(Math.random() * size)];
+                    sel_def = glossary[sel_word];
+                    word.innerText = sel_word;
+                    definition.innerText = sel_def;
+                    var timeoutTime = 10 * 1000;
+                    if(sel_def.length > 300){
+                        timeoutTime = 25 * 1000;
+                    }
+                    timeoutID = setTimeout(replaceWord, timeoutTime);
+                }
+                replaceWord();
+                document.body.addEventListener('click', replaceWord, false);
+            })();
+        </script>
+    </body>
+</html>

@@ -6,7 +6,7 @@
         <style>
             body{
                 height: 100%;
-                background-color: #404040;
+                background-color: #8b4a4a;
                 cursor: none;
             }
             h1{
@@ -46,7 +46,7 @@
         <img id="logo" src="wiki_logo.png">
         <script>
             (async function (){
-                const response = await fetch("slang.json")
+                const response = await fetch("alt.json")
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
                 }
