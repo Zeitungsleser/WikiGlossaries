@@ -62,6 +62,9 @@
                 const definition = document.getElementById("definition");
                 console.log(glossary);
                 words = Object.keys(glossary);
+                if(!words){
+                    replaceWord();
+                }
                 size = words.length;
                 var timeoutID;
                 function replaceWord(){
