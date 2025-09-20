@@ -73,6 +73,9 @@
                     }
                     sel_word = words[Math.floor(Math.random() * size)];
                     sel_def = glossary[sel_word];
+                    if(!sel_def){
+                        replaceWord();
+                    }
                     word.innerText = sel_word;
                     definition.innerText = sel_def;
                     var timeoutTime = 10 * 1000;
